@@ -9,6 +9,8 @@ dotenv.config()
 const QuoteApi = require('./QuoteAPI')
 const Game = require('./Models/Game');
 
+app.use(cors({origin: '*'}));
+
 mongoose.connect(process.env.MONGO_CONNECT, 
         {useNewUrlParser: true, useUnifiedTopology:true},
         ()=>{ console.log("Connection success")});
