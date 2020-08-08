@@ -9,7 +9,11 @@ dotenv.config()
 const QuoteApi = require('./QuoteAPI')
 const Game = require('./Models/Game');
 
-app.use(cors({origin: '*'}));
+app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+      });
 
 mongoose.connect(process.env.MONGO_CONNECT, 
         {useNewUrlParser: true, useUnifiedTopology:true},
