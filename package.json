@@ -11,7 +11,6 @@
     "type": "git",
     "url": "git+https://github.com/sanket-naik/Typing-Game-Socket.io-express-reactjs-mongo.git"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -26,5 +25,9 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.21",
     "socket.io": "^2.3.0"
+  },
+  "engines": {
+    "node": "12.16.1"
   }
+  
 }
