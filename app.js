@@ -3,13 +3,7 @@ const app=express();
 const socketio=require('socket.io');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv')
-var cors = require('cors');
 
-var corsOptions = {
-        origin: '*',
-        optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
-      }
-app.use(cors(corsOptions));
 dotenv.config()
 
 const QuoteApi = require('./QuoteAPI')
@@ -24,7 +18,10 @@ const server=app.listen(3500,()=>console.log(`Running in port 3500`));
 
 const io=socketio(server);
 
-io.set( 'origins', '*' )
+io.configure(function () { 
+        io.set("transports", ["xhr-polling"]); 
+        io.set("polling duration", 10); 
+      });
 
 io.on('connect', (socket)=>{
         socket.on('create-game',async (nickName)=>{
