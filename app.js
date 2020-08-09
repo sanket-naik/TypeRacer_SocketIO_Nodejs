@@ -24,6 +24,8 @@ const server=app.listen(3500,()=>console.log(`Running in port 3500`));
 
 const io=socketio(server);
 
+io.set( 'origins', '*' )
+
 io.on('connect', (socket)=>{
         socket.on('create-game',async (nickName)=>{
                 try{
