@@ -75,7 +75,7 @@ io.on('connect', (socket)=>{
                 if(player.isPartyLeader){
                         let timerID = setInterval(async()=>{
                                 if(countDown>=0){
-                                        io.emit(gameID).emit('timer', {countDown, msg:"Starting game"});
+                                        io.emit(gameID).emit('timer', {countDown, started:false, msg:"Starting game"});
                                         countDown--;
                                 }else{
                                         console.log("tiemr end")
@@ -121,11 +121,11 @@ const startGameClock=async(gameID)=>{
         let game=await Game.findById(gameID)
         game.startTime =new Date().getTime();
         game = await game.save();
-        let time= 5;
+        let time= 60;
         let timerID = setInterval(function gameIntervalFunc(){
                 const formatTime = calculateTime(time)
                 if(time>=0){
-                        io.to(gameID).emit('timer', {countDown: formatTime, msg: "Time Remaning"});
+                        io.to(gameID).emit('timer', {countDown: formatTime, started:true, msg: "Time Remaning"});
                         time--;
                 }else{
                        (async ()=>{
