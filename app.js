@@ -111,7 +111,7 @@ io.on('connect', (socket)=>{
                                 }
                         }
                   }
-                }catch{
+                }catch(e){
                         console.log(err)
                 }
         })
